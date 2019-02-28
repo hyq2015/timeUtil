@@ -1,61 +1,25 @@
 'use strict';
 /**
- * @param {Number} timestamp eg:1551323702241
+ * @param {Number} timeStamp eg:1551323702241
  * @param {String} formatter eg:yyyy-MM-dd  yyyy/MM/dd yyyy-M-d yyyy/M/d yyyy-MM-dd hh:mm:ss
  * */
-function Timestamp2String(timestamp,formatter) {
-    let year=new Date(timestamp).getFullYear();
-    let month=new Date(timestamp).getMonth()+1;
-    let day=new Date(timestamp).getDate();
-    let hour=new Date(timestamp).getHours();
-    let minutes=new Date(timestamp).getMinutes();
-    let seconds=new Date(timestamp).getSeconds();
-
-    let monthFormatter=formatter.match(/[M]{1,2}/g);
-    let dateFormatter=formatter.match(/[d]{1,2}/g);
-    let hourFormatter=formatter.match(/[h]{1,2}/g);
-    let minutesFormatter=formatter.match(/[m]{1,2}/g);
-    let secondsFormatter=formatter.match(/[s]{1,2}/g);
-
-    if(monthFormatter && monthFormatter.join("").length===2){
-        month=handleDouble(month)
-    }
-    if(dateFormatter && dateFormatter.join("").length===2){
-        day=handleDouble(day)
-    }
-    if(hourFormatter && hourFormatter.join("").length===2){
-        hour=handleDouble(hour)
-    }
-    if(minutesFormatter && minutesFormatter.join("").length===2){
-        minutes=handleDouble(minutes)
-    }
-    if(secondsFormatter && secondsFormatter.join("").length===2){
-        seconds=handleDouble(seconds)
-    }
-    let format=formatter;
-    while(/[A-z]+/.test(format)){
-        if(format.match(/(y){1,4}/g)){
-            format=format.replace((format.match(/(y){1,4}/g)).join(""),year);
-        }
-        if(format.match(/(M){1,2}/g)){
-            format=format.replace((format.match(/(M){1,2}/g)).join(""),month);
-        }
-        if(format.match(/(d){1,2}/g)){
-            format=format.replace((format.match(/(d){1,2}/g)).join(""),day);
-        }
-        if(format.match(/(h){1,2}/g)){
-            format=format.replace((format.match(/(h){1,2}/g)).join(""),hour);
-        }
-        if(format.match(/(m){1,2}/g)){
-            format=format.replace((format.match(/(m){1,2}/g)).join(""),minutes);
-        }
-        if(format.match(/(s){1,2}/g)){
-            format=format.replace((format.match(/(s){1,2}/g)).join(""),seconds);
+function Timestamp2String(timeStamp,formatter){
+    let date=new Date(timeStamp);
+    let obj={
+        "y+":date.getFullYear(),
+        "M+":date.getMonth()+1,
+        "d+":date.getDate(),
+        "h+":date.getHours(),
+        "m+":date.getMinutes(),
+        "s+":date.getSeconds()
+    };
+    for(let item in obj){
+        if(new RegExp("("+item+")").test(formatter)){
+            formatter=formatter.replace(RegExp.$1,(RegExp.$1.length>1 ? handleDouble(obj[item]) : obj[item]))
         }
     }
-    return format
+    return formatter
 }
-
 /**
  * @param {Number,String} para
  * @return {String,Number}
