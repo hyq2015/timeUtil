@@ -1,0 +1,28 @@
+{
+  "name": "timeutil",
+  "version": "0.0.1",
+  "description": "util library",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "testRegex": "/tests/.*.test.jsx?$"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyq2015/timeUtil.git"
+  },
+  "author": "Ricky Huang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyq2015/timeUtil/issues"
+  },
+  "homepage": "https://github.com/hyq2015/timeUtil#readme",
+  "bin": {
+    "easy-timeutil": "./lib/cli.js"
+  },
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}
