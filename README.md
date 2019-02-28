@@ -1,5 +1,5 @@
 ### timeUtil
-convert timestamp to date string by customize formatter 
+convert timestamp to date string by customized formatter 
 
 
 ### Usage
