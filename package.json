@@ -1,5 +1,5 @@
 {
-  "name": "timeutil",
+  "name": "@rickyhuang/timeutil",
   "version": "0.0.1",
   "description": "util library",
   "main": "index.js",
